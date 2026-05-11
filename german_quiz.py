@@ -24,6 +24,10 @@ import random
 #   "subtype"    : "personal" or "possessive"
 #   "note"       : usage note shown in hint (optional)
 #   "declines"   : True if the pronoun declines like an ein-word (possessives)
+#
+# Adjectives additionally carry (optional):
+#   "note"       : usage note, e.g. polysemy or indeclinability
+#   "indeclinable" : True if the adjective does not take case endings
 # ---------------------------------------------------------------------------
 
 WORDS = [
@@ -98,20 +102,72 @@ WORDS = [
     {"type": "verb", "en": "to close",             "de": "zumachen",        "class": "weak",      "separable": True, "prefix": "zu-"},
 
     # -------------------------------------------------------------------------
-    # Adjectives
+    # Adjectives — general
     # -------------------------------------------------------------------------
-    {"type": "adj", "en": "big",       "de": "groß"},
-    {"type": "adj", "en": "long",      "de": "lang"},
-    {"type": "adj", "en": "small",     "de": "klein"},
-    {"type": "adj", "en": "old",       "de": "alt"},
-    {"type": "adj", "en": "new",       "de": "neu"},
-    {"type": "adj", "en": "fresh",     "de": "frisch"},
-    {"type": "adj", "en": "cold",      "de": "kalt"},
-    {"type": "adj", "en": "beautiful", "de": "schön"},
+    {"type": "adj", "en": "big",                "de": "groß"},
+    {"type": "adj", "en": "long",               "de": "lang"},
+    {"type": "adj", "en": "small",              "de": "klein"},
+    {"type": "adj", "en": "old",                "de": "alt"},
+    {"type": "adj", "en": "new",                "de": "neu"},
+    {"type": "adj", "en": "fresh",              "de": "frisch"},
+    {"type": "adj", "en": "cold",               "de": "kalt"},
+    {"type": "adj", "en": "beautiful",          "de": "schön"},
+    {"type": "adj", "en": "hot",                "de": "heiß"},
+    {"type": "adj", "en": "short",              "de": "kurz"},
+    {"type": "adj", "en": "thick / fat",        "de": "dick"},
+    {"type": "adj", "en": "thin / slim",        "de": "dünn"},
+    {"type": "adj", "en": "fast",               "de": "schnell"},
+    {"type": "adj", "en": "slow",               "de": "langsam"},
+    {"type": "adj", "en": "intelligent",        "de": "intelligent"},
+    {"type": "adj", "en": "stupid",             "de": "dumm"},
+    {"type": "adj", "en": "sharp / spicy",      "de": "scharf",      "note": "means both sharp (knife) and spicy (food)"},
+    {"type": "adj", "en": "dull / blunt",       "de": "stumpf"},
+    {"type": "adj", "en": "ugly",               "de": "hässlich"},
+    {"type": "adj", "en": "interesting",        "de": "interessant"},
+    {"type": "adj", "en": "boring",             "de": "langweilig"},
+    {"type": "adj", "en": "expensive",          "de": "teuer"},
+    {"type": "adj", "en": "cheap",              "de": "billig"},
+    {"type": "adj", "en": "happy",              "de": "glücklich"},
+    {"type": "adj", "en": "sad",                "de": "traurig"},
+    {"type": "adj", "en": "loud",               "de": "laut"},
+    {"type": "adj", "en": "quiet / soft",       "de": "leise"},
+    {"type": "adj", "en": "heavy / difficult",  "de": "schwer",      "note": "means both heavy (weight) and difficult (task)"},
+    {"type": "adj", "en": "light / easy",       "de": "leicht",      "note": "opposite of both meanings of schwer"},
+    {"type": "adj", "en": "tired",              "de": "müde"},
+    {"type": "adj", "en": "clean",              "de": "sauber"},
+    {"type": "adj", "en": "dirty",              "de": "schmutzig"},
+    {"type": "adj", "en": "dangerous",          "de": "gefährlich"},
+    {"type": "adj", "en": "safe / certain",     "de": "sicher",      "note": "means both safe and certain depending on context"},
+    {"type": "adj", "en": "rich",               "de": "reich"},
+    {"type": "adj", "en": "poor",               "de": "arm"},
+    {"type": "adj", "en": "funny",              "de": "lustig"},
+
+    # -------------------------------------------------------------------------
+    # Adjectives — colors
+    # Indeclinable colors (lila, rosa, orange, beige, creme, türkis) do not
+    # take case endings — flagged for the future declension quiz mode.
+    # -------------------------------------------------------------------------
+    {"type": "adj", "en": "red",        "de": "rot"},
+    {"type": "adj", "en": "blue",       "de": "blau"},
+    {"type": "adj", "en": "green",      "de": "grün"},
+    {"type": "adj", "en": "yellow",     "de": "gelb"},
+    {"type": "adj", "en": "orange",     "de": "orange",   "indeclinable": True},
+    {"type": "adj", "en": "purple",     "de": "lila",     "indeclinable": True},
+    {"type": "adj", "en": "pink",       "de": "rosa",     "indeclinable": True},
+    {"type": "adj", "en": "brown",      "de": "braun"},
+    {"type": "adj", "en": "black",      "de": "schwarz"},
+    {"type": "adj", "en": "white",      "de": "weiß"},
+    {"type": "adj", "en": "gray",       "de": "grau"},
+    {"type": "adj", "en": "silver",     "de": "silber"},
+    {"type": "adj", "en": "golden",     "de": "golden"},
+    {"type": "adj", "en": "beige",      "de": "beige",    "indeclinable": True},
+    {"type": "adj", "en": "cream",      "de": "creme",    "indeclinable": True},
+    {"type": "adj", "en": "turquoise",  "de": "türkis",   "indeclinable": True},
+    {"type": "adj", "en": "dark",       "de": "dunkel",   "note": "stem drops -e- before endings: dunkle, dunkler etc."},
+    {"type": "adj", "en": "light",      "de": "hell",     "note": "used for light-colored as well as bright"},
 
     # -------------------------------------------------------------------------
     # Pronouns — personal
-    # Each entry quizzes the nominative form; case declension tested separately.
     # -------------------------------------------------------------------------
     {"type": "pronoun", "subtype": "personal", "en": "I",                  "de": "ich"},
     {"type": "pronoun", "subtype": "personal", "en": "you (informal sg.)", "de": "du"},
@@ -125,17 +181,16 @@ WORDS = [
 
     # -------------------------------------------------------------------------
     # Pronouns — possessive (nominative base form, masc. sg.)
-    # These decline like ein-words (mixed declension) — flagged with "declines"
     # -------------------------------------------------------------------------
-    {"type": "pronoun", "subtype": "possessive", "en": "my",         "de": "mein",  "declines": True, "note": "1st person sg."},
-    {"type": "pronoun", "subtype": "possessive", "en": "your (sg.)", "de": "dein",  "declines": True, "note": "2nd person sg. informal"},
-    {"type": "pronoun", "subtype": "possessive", "en": "his",        "de": "sein",  "declines": True, "note": "3rd person sg. masc./neut. — also used for 'its'"},
-    {"type": "pronoun", "subtype": "possessive", "en": "her",        "de": "ihr",   "declines": True, "note": "3rd person sg. fem. — identical base to 'their' and formal 'your'"},
-    {"type": "pronoun", "subtype": "possessive", "en": "its",        "de": "sein",  "declines": True, "note": "same form as 'his' — German doesn't distinguish"},
-    {"type": "pronoun", "subtype": "possessive", "en": "our",        "de": "unser", "declines": True, "note": "1st person pl. — stem unser-, drops -e- before endings in some forms"},
-    {"type": "pronoun", "subtype": "possessive", "en": "your (pl.)", "de": "euer",  "declines": True, "note": "2nd person pl. informal — stem eur-, drops -e- before endings"},
-    {"type": "pronoun", "subtype": "possessive", "en": "their",      "de": "ihr",   "declines": True, "note": "3rd person pl. — identical base to 'her' and formal 'your'"},
-    {"type": "pronoun", "subtype": "possessive", "en": "your (formal)", "de": "Ihr", "declines": True, "note": "formal address, sg. and pl. — always capitalised"},
+    {"type": "pronoun", "subtype": "possessive", "en": "my",            "de": "mein",  "declines": True, "note": "1st person sg."},
+    {"type": "pronoun", "subtype": "possessive", "en": "your (sg.)",    "de": "dein",  "declines": True, "note": "2nd person sg. informal"},
+    {"type": "pronoun", "subtype": "possessive", "en": "his",           "de": "sein",  "declines": True, "note": "3rd person sg. masc./neut. — also used for 'its'"},
+    {"type": "pronoun", "subtype": "possessive", "en": "her",           "de": "ihr",   "declines": True, "note": "3rd person sg. fem. — identical base to 'their' and formal 'your'"},
+    {"type": "pronoun", "subtype": "possessive", "en": "its",           "de": "sein",  "declines": True, "note": "same form as 'his' — German doesn't distinguish"},
+    {"type": "pronoun", "subtype": "possessive", "en": "our",           "de": "unser", "declines": True, "note": "1st person pl. — stem unser-, drops -e- before endings in some forms"},
+    {"type": "pronoun", "subtype": "possessive", "en": "your (pl.)",    "de": "euer",  "declines": True, "note": "2nd person pl. informal — stem eur-, drops -e- before endings"},
+    {"type": "pronoun", "subtype": "possessive", "en": "their",         "de": "ihr",   "declines": True, "note": "3rd person pl. — identical base to 'her' and formal 'your'"},
+    {"type": "pronoun", "subtype": "possessive", "en": "your (formal)", "de": "Ihr",   "declines": True, "note": "formal address, sg. and pl. — always capitalised"},
 ]
 
 GENDER_ARTICLE = {"m": "der", "f": "die", "n": "das"}
@@ -166,7 +221,12 @@ def prompt_verb(word):
 def prompt_adj(word):
     prompt  = f'Auf Deutsch, bitte: "{word["en"]}" (adjective)'
     answer  = word["de"]
-    hint    = word["de"]
+    tags    = []
+    if word.get("indeclinable"):
+        tags.append("indeclinable")
+    if word.get("note"):
+        tags.append(word["note"])
+    hint = f'{word["de"]}  [{", ".join(tags)}]' if tags else word["de"]
     return prompt, answer, hint
 
 def prompt_pronoun(word):
@@ -194,30 +254,34 @@ PROMPT_BUILDERS = {
 def run_quiz():
     print("\nWillkommen! Drücke Ctrl+C jederzeit zum Beenden.\n")
     correct = total = 0
+    interrupted = False
 
     while True:
-        word    = random.choice(WORDS)
-        builder = PROMPT_BUILDERS[word["type"]]
-        prompt, answer, hint = builder(word)
+        print("Bereiten Sie sich auf 10 Fragen vor.\n")
+        for _ in range(10):
+            word    = random.choice(WORDS)
+            builder = PROMPT_BUILDERS[word["type"]]
+            prompt, answer, hint = builder(word)
 
-        print(prompt)
-        try:
-            response = input("Your answer: ").strip()
-        except KeyboardInterrupt:
+            print(prompt)
+            try:
+                response = input("Your answer: ").strip()
+            except KeyboardInterrupt:
+                interrupted = True
+                break
+
+            total += 1
+            if response.lower() == answer.lower():
+                print("Richtig! :)\n")
+                correct += 1
+            else:
+                print(f"Leider falsch. Richtige Antwort: {hint}\n")
+
+        if interrupted:
             break
 
-        total += 1
-        if response.lower() == answer.lower():
-            print("Richtig! :)\n")
-            correct += 1
-        else:
-            print(f"Leider falsch. Richtige Antwort: {hint}\n")
-
-        try:
-            again = input("Weiter? [y/n]: ").strip().lower()
-        except KeyboardInterrupt:
-            break
-
+        print("Sie haben 10 Fragen beantwortet.")
+        again = input("Möchten Sie 10 mehr? [y/n] ").strip().lower()
         if again != "y":
             break
 
